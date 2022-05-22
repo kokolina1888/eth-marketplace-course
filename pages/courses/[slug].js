@@ -1,11 +1,11 @@
-import { Modal } from "@components/common";
+import { Modal } from "@components/ui/common";
 import {
   CourseHero,
   Curriculum,
   Keypoints
-} from "@components/course";
+} from "@components/ui/course";
 import { getAllCourses } from "../../content/courses/fetcher";
-import { BaseLayout } from "@components/layout";
+import { BaseLayout } from "@components/ui/layout";
 
 export default function Course({course}) {
 
@@ -18,8 +18,11 @@ export default function Course({course}) {
             image={course.coverImage}
         />
       </div>
-      <Keypoints />
-      <Curriculum />
+      <Keypoints 
+        points={course.wsl} />
+      <Curriculum 
+        locked={true}
+      />
       <Modal />
     </>
   )
