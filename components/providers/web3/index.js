@@ -32,18 +32,16 @@ export default function Web3Provider({children}) {
     const _web3Api = useMemo(() => {
         return {
             ...web3Api,
-            connect:  web3Api.provdider ? 
+            isWeb3Loaded: !web3Api.isLoading && web3Api.web3 != null,
+            connect:  web3Api.provider ? 
             async () => { 
                 try {
-                    await web3Api.provider.request({
-                        method: 'eth_requestAccounts'
-                    })
+                    await web3Api.provider.request({ method: 'eth_requestAccounts' })
                 } catch {
                     console.error(' Cannot retrieve account')
                     window.location.reload()
                 }
-            }
-            :  () => console.error('Cannot connect to metamask')
+            } :  () => console.error('Cannot connect to metamask')
         }
     }, [web3Api])
 
