@@ -4,7 +4,7 @@ import { Button } from '@components/ui/common'
 
 
 export default function Footer() {
-  const { connect, isLoading, web3  } = useWeb3();
+  const { connect, isLoading, isWeb3Loaded  } = useWeb3();
   return (
     <section>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export default function Footer() {
                 >
                   Loading...
                 </Button> : 
-                isWeb3Loading ?
+                  isWeb3Loaded ?
                   <Button
                     onClick={connect}
                   >
