@@ -1,14 +1,18 @@
 import Link from 'next/link'
 import { useWeb3 } from '@components/providers/web3' 
 import { Button } from '@components/ui/common'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'; 
 
 
 export default function Footer() {
-  const { connect, isLoading, isWeb3Loaded  } = useWeb3();
-  const router = useRouter();
+  const { connect, isLoading, isWeb3Loaded, web3, hooks  } = useWeb3();
+  const router = useRouter(); 
+  const { account } = hooks.useAccount();
+  
   return (
-    <section>
+
+    <section> 
+    { account }
       <div className="relative px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex items-center justify-between">
@@ -54,7 +58,7 @@ export default function Footer() {
                   onClick={connect} 
                 >
                   Loading...
-                </Button> : 
+                </Button> :  
                   isWeb3Loaded ?
                   <Button
                     onClick={connect}
