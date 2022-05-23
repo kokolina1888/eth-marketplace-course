@@ -20,8 +20,7 @@ export const handler = (web3, provider) => () => {
       accounts => mutate(accounts[0] ?? null)
     )
   }, [provider])
-if(data ){
-    console.log(web3.utils.keccak256(data) )
+if(data ){ 
 }
     return { account: {
         isAdmin:  ( data && adminAddresses[web3.utils.keccak256(data)]) ?? false,  
