@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { useWeb3 } from '@components/providers/web3' 
-import { Button } from '@components/ui/common'
-import { useRouter } from 'next/router'; 
+import { Button } from '@components/ui/common';
+import { useRouter } from 'next/router';  
+import { useAccount } from '@components/web3/hooks/useAccount';
 
 
 export default function Footer() {
   const { connect, isLoading, isWeb3Loaded, web3, hooks  } = useWeb3();
   const router = useRouter(); 
-  const { account } = hooks.useAccount();
+  const { account } = useAccount();
   
   return (
 
