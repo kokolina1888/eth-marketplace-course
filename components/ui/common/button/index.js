@@ -5,10 +5,9 @@ export default function Button({
   }) {
   
     return (
-      <button
-        disabled={true}
+      <button  
         {...rest}
-        className={`px-8 py-3 border rounded-md text-base font-medium ${className}`}>
+        className={`disabled:opacity-50 diisabled:cursor-not-allowed px-8 py-3 border rounded-md text-base font-medium ${className}`}>
           {children}
       </button>
     )
