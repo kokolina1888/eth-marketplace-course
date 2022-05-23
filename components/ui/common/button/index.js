@@ -5,10 +5,11 @@ export default function Button({
   }) {
   
     return (
-      <span
+      <button
+        disabled={true}
         {...rest}
         className={`px-8 py-3 border rounded-md text-base font-medium ${className}`}>
           {children}
-      </span>
+      </button>
     )
   }
