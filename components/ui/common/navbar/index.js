@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { useWeb3 } from '@components/providers/web3' 
+import { Button } from '@components/ui/common'
 
 
 export default function Footer() {
-  const { connect, isWeb3Loaded } = useWeb3();
+  const { connect, isLoading, web3  } = useWeb3();
   return (
     <section>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -45,17 +46,23 @@ export default function Footer() {
                   Wishlist
                 </a>
               </Link>
-              { isWeb3Loaded ? 
-                <span 
+              { isLoading ? 
+                <Button
+                  onClick={connect} 
+                >
+                  Loading...
+                </Button> : 
+                isWeb3Loading ?
+                  <Button
+                    onClick={connect}
+                  >
+                    Connect 
+                  </Button>  :
+                  <Button
                   onClick={connect}
-                  className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                  Connect
-                </span> : 
-                <span 
-                  onClick={connect}
-                  className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                >
                   Install Metamask
-                </span>  
+                </Button>  
               }
              
             </div>
