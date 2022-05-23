@@ -9,11 +9,12 @@ export default function Footer() {
   const { connect, isLoading, isWeb3Loaded, web3, hooks  } = useWeb3();
   const router = useRouter(); 
   const { account } = useAccount();
+  console.log( account )
   
   return (
 
     <section> 
-    { account }
+     
       <div className="relative px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex items-center justify-between">
