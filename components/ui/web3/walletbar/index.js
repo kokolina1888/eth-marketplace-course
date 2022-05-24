@@ -14,13 +14,13 @@ export default function WalletBar({address, network}) {
             </div>
           </div>
           <div>
-            { !network.hasBeenInitialized && !network.isSupported &&
+            { network.hasInitialResponse && !network.isSupported &&
               <div className="p-4 bg-red-400 rounded-lg">
                 <div>Connected to wrong network</div>
                 <div>
                   Connect to: {` `}
                   <strong className="text-2xl">
-                    { network.target }
+                    {network.target}
                   </strong>
                 </div>
               </div>
