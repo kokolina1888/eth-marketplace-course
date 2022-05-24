@@ -19,7 +19,8 @@ export default function Marketplace({courses}) {
             network={{ 
               data: network.data,
               target: network.target,
-              isSupported: network.isSupported
+              isSupported: network.isSupported,
+              hasBeenInitialized: network.hasBeenInitialized
             }}  /> 
         </div> 
         <CourseList 

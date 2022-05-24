@@ -5,7 +5,7 @@ import { useAccount } from "@components/hooks/web3/useAccount"
 import { useRouter } from "next/router"
 
 export default function Footer() {
-  const { connect, isLoading, isWeb3Loaded } = useWeb3()
+  const { connect, hasBeenInitialized, isWeb3Loaded } = useWeb3()
   const { account } = useAccount();
   const { pathname } = useRouter()
 
@@ -41,7 +41,7 @@ export default function Footer() {
                   Wishlist
                 </a>
               </Link>
-              { isLoading ?
+              { hasBeenInitialized ?
                 <Button
                   disabled={true}
                   onClick={connect}>

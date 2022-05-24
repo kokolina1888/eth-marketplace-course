@@ -10,7 +10,7 @@ export default function Web3Provider({children}) {
         provider: null,
         web3: null,
         contract: null,
-        isLoading: true
+        hasBeenInitialized: true
     })
 
     useEffect(()=>{
@@ -22,10 +22,10 @@ export default function Web3Provider({children}) {
                   provider,
                   web3,
                   contract: null,
-                  isLoading: false
+                  hasBeenInitialized: false
               })
             } else {
-                setWeb3Api(api => ({ ...api, isLoading: false }))
+                setWeb3Api(api => ({ ...api, hasBeenInitialized: false }))
                 console.error('Please, install metamask')
             }
         }
