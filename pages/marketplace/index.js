@@ -15,12 +15,12 @@ export default function Marketplace({courses}) {
     <> 
         <div className='py-4'> 
           <WalletBar 
-            address={ account.data }
-            network={network.data} />
-            'Current' {`${network.data}`}
-            'Target' {`${network.targetNetwork}`}
-            'Is supported' {`${network.isSupported}`}
-
+            address={account.data }
+            network={{ 
+              data: network.data,
+              target: network.target,
+              isSupported: network.isSupported
+            }}  /> 
         </div> 
         <CourseList 
           courses={courses}>
