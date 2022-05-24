@@ -1,5 +1,6 @@
+import { useWeb3 } from "@components/providers";
 export default function WalletBar({address, network}) {
-
+  const { requireInstall } = useWeb3();
   return (
     <section className="text-white bg-indigo-600">
       <div className="p-8">
@@ -24,6 +25,9 @@ export default function WalletBar({address, network}) {
                   </strong>
                 </div>
               </div>
+            }
+            { requireInstall && 
+              <div className="p-4 bg-yellow-500 rounded-lg">Cannot Connect to Network. Please Install!</div>
             }
             { network.data &&
               <div>
