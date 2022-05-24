@@ -4,8 +4,8 @@ import { Button } from "@components/ui/common"
 import { useAccount } from "@components/hooks/web3"
 import { useRouter } from "next/router"
 
-export default function Footer() {
-  const { connect, hasInitialResponse, web3 } = useWeb3()
+export default function Navbar() {
+  const { connect, isLoading, requireInstall } = useWeb3()
   const { account } = useAccount();
   const { pathname } = useRouter()
 
@@ -41,27 +41,27 @@ export default function Footer() {
                   Wishlist
                 </a>
               </Link>
-              { hasInitialResponse ?
+              { isLoading ?
                 <Button
                   disabled={true}
                   onClick={connect}>
                     Loading...
-                </Button> :
-                web3 != null ?
+                </Button> : 
                 account.data ?
                 <Button
                   hoverable={false}
                   className="cursor-default">
                   Hi there { account.isAdmin && 'Admin' } 
                 </Button> :
-                <Button
-                  onClick={connect}>
-                  Connect
-                </Button> :
+                requireInstall ?
                 <Button
                   onClick={() => window.open("https://metamask.io/download.html", "_blank")}>
                   Install Metamask
-                </Button>
+                </Button> :
+                <Button
+                  onClick={connect}>
+                  Connect
+                </Button> 
               }
             </div>
           </div>
