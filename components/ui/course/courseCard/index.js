@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 
-export default function CourseCard({course}) {
+export default function CourseCard({course, Footer }) {
   return (
     
     <div className="overflow-hidden bg-white shadow-md rounded-xl md:max-w-2xl">
@@ -36,6 +36,10 @@ export default function CourseCard({course}) {
             className="mt-2 text-gray-500">
                 {course.description}
             </p>
+            {
+                Footer && 
+                <Footer/>
+            }
         </div>
         </div>
     </div>
