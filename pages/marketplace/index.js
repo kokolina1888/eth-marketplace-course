@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { CourseCard, CourseList } from "@components/ui/course"
 import { BaseLayout } from "@components/ui/layout"
 import { getAllCourses } from "@content/courses/fetcher"
@@ -7,6 +8,7 @@ import { Button } from "@components/ui/common";
 import { OrderModal } from "@components/ui/order"
 
 export default function Marketplace({courses}) {
+  const [selectedCourse, setSelectedCourse] = useState(null)
   const { account } = useAccount()
   const { network } = useNetwork()
 
@@ -34,6 +36,7 @@ export default function Marketplace({courses}) {
           <div className="mt-4">
             <Button
               variant='lightPurple'
+              onClick={()=>setSelectedCourse(course)}
             >
               Purchase
             </Button>
@@ -41,7 +44,10 @@ export default function Marketplace({courses}) {
         />
       }
       </CourseList>
-      <OrderModal />
+      { selectedCourse && <OrderModal 
+          course={selectedCourse}
+          onClose={()=>setSelectedCourse(null)}
+          /> }
     </>
   )
 }

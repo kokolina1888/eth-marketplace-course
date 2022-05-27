@@ -74,7 +74,7 @@ export default function OrderModal({course, onClose}) {
                   className="block p-4 border-gray-300 rounded-md shadow-md w-80 focus:ring-indigo-500 focus:border-indigo-500 pl-7 sm:text-sm" placeholder="x@y.com" />
               </div>
               <div className="flex text-xs text-gray-700">
-                <label className="flex items-center mr-2">
+                <label className="flex mr-2 items- center">
                   <input
                     type="checkbox"
                     className="form-checkbox" />
