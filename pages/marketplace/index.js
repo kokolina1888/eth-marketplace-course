@@ -10,11 +10,9 @@ import { useEthPrice } from "@components/hooks/web3/useEthPrice"
 
 export default function Marketplace({courses}) {
   const [selectedCourse, setSelectedCourse] = useState(null)
-  const { account } = useAccount()
-  const { network } = useNetwork()
+  const { account, network, canPurchase } = useWalletInfo();
   const { eth } = useEthPrice()  
 
-  const canPurchaseCourse = !!(account.data && network.isSupported)
   return (
     <>
       <div className="py-4">
