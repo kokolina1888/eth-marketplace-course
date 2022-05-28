@@ -2,7 +2,7 @@ import Image from 'next/image'
 export default function EthRates({eth, ethPerItem}) {
 
   return (
-    <div className="grid grid-cols-4 mb-5">
+    <div className="grid grid-cols-4">
       <div className="flex items-stretch flex-1 text-center">
         <div className="p-10 border rounded-md drop-shadow">
           <div className='flex item-center'>
