@@ -14,6 +14,7 @@ export default function Marketplace({courses}) {
   const { network } = useNetwork()
   const { eth } = useEthPrice()  
 
+  const canPurchaseCourse = !!(account.data && network.isSupported)
   return (
     <>
       <div className="py-4">
@@ -36,6 +37,7 @@ export default function Marketplace({courses}) {
       >
       {course =>
         <CourseCard
+          disabled={!canPurchaseCourse}
           key={course.id}
           course={course}
           Footer={()=>
@@ -43,6 +45,7 @@ export default function Marketplace({courses}) {
             <Button
               variant='lightPurple'
               onClick={()=>setSelectedCourse(course)}
+              disabled={!canPurchaseCourse}
             >
               Purchase
             </Button>
