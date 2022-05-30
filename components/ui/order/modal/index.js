@@ -9,7 +9,8 @@ const defaultOrder = {
 }
 const _createFormState = (isDisabled = false, message ='') => ({isDisabled, message})
 
-  const createFormState = ({price, email, confirmationEmail}) => {
+  const createFormState = ({price, email, confirmationEmail}, hasAgreedTOS) => {
+    console.log(hasAgreedTOS)
     if( !price || Number(price) <= 0 ){
       return _createFormState(true, 'Price is not valid');
     } 
@@ -19,13 +20,16 @@ const _createFormState = (isDisabled = false, message ='') => ({isDisabled, mess
     else if ( email !== confirmationEmail ){
       return _createFormState(true, 'Emails are not matching.')
     }
-    
+    else if ( !hasAgreedTOS ){
+      return _createFormState(true, 'Agree with TOS!')
+    } 
     return _createFormState()
   }  
-export default function OrderModal({course, onClose}) {
+export default function OrderModal({course, onClose, onSubmit}) {
   const [isOpen, setIsOpen] = useState(false); 
   const [order,setOrder] = useState(defaultOrder);
-  const [enablePrice, setEnablePrice] = useState(false)
+  const [enablePrice, setEnablePrice] = useState(false);
+  const [hasAgreedTOS, setHasAgreedTOS] = useState(false);
   const { eth } = useEthPrice();
 
   useEffect(() => {
@@ -39,12 +43,14 @@ export default function OrderModal({course, onClose}) {
   }, [course])
 
   const closeModal = () => {
-    setIsOpen(false)
-    setOrder(defaultOrder)
-    onClose()
-  }
+    setIsOpen(false);
+    setOrder(defaultOrder);
+    setEnablePrice(false);
+    setHasAgreedTOS(false);
+    onClose();
+  } 
 
-  const formState = createFormState(order)
+  const formState = createFormState( order, hasAgreedTOS )
   
   return (
     <Modal isOpen={isOpen}>
@@ -132,8 +138,12 @@ export default function OrderModal({course, onClose}) {
                   className="block p-4 border-gray-300 rounded-md shadow-md w-80 focus:ring-indigo-500 focus:border-indigo-500 pl-7 sm:text-sm" placeholder="x@y.com" />
               </div>
               <div className="flex text-xs text-gray-700">
-                <label className="flex mr-2 items- center">
+                <label className="flex mr-2 items- center"> 
                   <input
+                    checked={hasAgreedTOS}
+                    onChange={({target:{checked}})=>{
+                      setHasAgreedTOS(checked)
+                    }}
                     type="checkbox"
                     className="form-checkbox" />
                 </label>
@@ -150,9 +160,9 @@ export default function OrderModal({course, onClose}) {
         <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex">
           <Button
             disabled={formState.isDisabled}
-          onClick={()=>{
-            alert(JSON.stringify(order))
-          }}
+            onClick={()=>{
+            onSubmit(order)
+            }}
           >
             Submit
           </Button>

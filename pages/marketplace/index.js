@@ -10,6 +10,9 @@ import { MarketHeader } from "@components/ui/marketplace"
 export default function Marketplace({courses}) {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const {  canPurchaseCourse } = useWalletInfo();
+  const purchaseCourse = ( order ) => {
+    alert(JSON.stringify(order))
+  }
   
   return (
     <>
@@ -37,8 +40,10 @@ export default function Marketplace({courses}) {
         />
       }
       </CourseList>
-      { selectedCourse && <OrderModal 
+      { selectedCourse && 
+          <OrderModal 
           course={selectedCourse}
+          onSubmit={purchaseCourse}
           onClose={()=>setSelectedCourse(null)}
           /> }
     </>
