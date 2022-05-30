@@ -7,6 +7,21 @@ const defaultOrder = {
   email: '',
   confirmationEmail: ''
 }
+const _createFormState = (isDisabled = false, message ='') => ({isDisabled, message})
+
+  const createFormState = ({price, email, confirmationEmail}) => {
+    if( !price || Number(price) <= 0 ){
+      return _createFormState(true, 'Price is not valid');
+    } 
+    else if ( confirmationEmail.length === 0 || email.length === 0 ){
+      return _createFormState(true, 'Not a Valid email')
+    }
+    else if ( email !== confirmationEmail ){
+      return _createFormState(true, 'Emails are not matching.')
+    }
+    
+    return _createFormState()
+  }  
 export default function OrderModal({course, onClose}) {
   const [isOpen, setIsOpen] = useState(false); 
   const [order,setOrder] = useState(defaultOrder);
@@ -29,14 +44,14 @@ export default function OrderModal({course, onClose}) {
     onClose()
   }
 
+  const formState = createFormState(order)
   
-
   return (
     <Modal isOpen={isOpen}>
       <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div className="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
-            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <div className="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
               <h3 className="text-lg font-bold leading-6 text-gray-900 mb-7" id="modal-title">
                 {course.title}
               </h3>
@@ -124,11 +139,17 @@ export default function OrderModal({course, onClose}) {
                 </label>
                 <span>I accept Eincode &apos;terms of service&apos; and I agree that my order can be rejected in the case data provided above are not correct</span>
               </div>
+              {formState.message && 
+                <div className='p-4 my-3 text-sm text-red-700 bg-red-200 rounded-lg'>
+                  {formState.message}
+                </div>
+              }
             </div>
           </div>
         </div>
         <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex">
           <Button
+            disabled={formState.isDisabled}
           onClick={()=>{
             alert(JSON.stringify(order))
           }}
