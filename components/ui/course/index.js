@@ -1,9 +1,7 @@
-
-
-
 export { default as CourseList } from "./list"
+export { default as CourseCard } from "./courseCard"
+export { default as OwnedCourseCard } from "./courseCard/OwnedCourseCard"
 export { default as CourseHero } from "./hero"
 export { default as Curriculum } from "./curriculum"
 export { default as Keypoints } from "./keypoints"
-export { default as CourseCard } from './courseCard'
-export { default as OwnedCourseCard } from './courseCard/ownedCourseCard'
+export { default as CourseFilter } from "./filter"

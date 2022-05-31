@@ -1,15 +1,11 @@
-
-
-
-
 export default function Footer() {
 
   return (
-    <footer className="bg-gray-900 pt-1">
-      <div className="container mx-auto px-6">
-        <div className="mt-5 flex flex-col items-center">
+    <footer className="pt-1 bg-gray-900">
+      <div className="container px-6 mx-auto">
+        <div className="flex flex-col items-center mt-5">
           <div className="py-6">
-            <p className="mb-6 text-white text-sm text-primary-2 font-bold">
+            <p className="mb-6 text-sm font-bold text-white text-primary-2">
                 © {new Date().getFullYear()} Eincode
             </p>
           </div>
