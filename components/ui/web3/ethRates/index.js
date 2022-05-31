@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { useEthPrice } from '@components/hooks/web3/useEthPrice'
+import { useEthPrice } from '@components/hooks/web3/useEthPrice' 
+import { Loader } from '@components/ui/common';
 
 export default function EthRates() {
   const { eth } = useEthPrice();
@@ -8,12 +9,16 @@ export default function EthRates() {
       <div className="flex items-stretch flex-1 text-center">
         <div className="p-10 border rounded-md drop-shadow">
           <div className='flex item-center'>
+         { true ?
+          <Loader/>
+          :
+          <>
             <Image 
               layout='fixed'
               height='35'
               width='35'
               src='/small-eth.webp'/>
-            <span className="text-2xl font-bold">  = {eth.data}$</span>
+            <span className="text-2xl font-bold">  = {eth.data}$</span></>}
           </div>
           <p className="text-xl text-gray-500">Current eth Price</p>
         </div>
