@@ -3,13 +3,13 @@ import { Button } from "@components/ui/common";
 export default function CourseFilter() {
 
   return (
-    <div className="flex items-center my-4">
+    <div className="flex flex-col items-center my-4 md:flex-row">
       <div className="relative flex mr-2 rounded-md">
         <input
           type="text"
           name="account"
           id="account"
-          className="block p-4 border-gray-300 rounded-md shadow-md w-96 focus:ring-indigo-500 focus:border-indigo-500 pl-7 sm:text-sm"
+          className="block p-4 border-gray-300 rounded-md shadow-md w-52 xs:w-96 focus:ring-indigo-500 focus:border-indigo-500 pl-7 sm:text-sm"
           placeholder="0x2341ab..." />
         <Button>
           Search
