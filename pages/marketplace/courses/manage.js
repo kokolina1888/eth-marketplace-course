@@ -7,10 +7,8 @@ export default function ManageCourses() {
 
   return (
     <>
-      <div className="py-4">
-        <MarketHeader />
-        <CourseFilter />
-      </div>
+      <MarketHeader />
+      <CourseFilter />
       <section className="grid grid-cols-1">
         <OwnedCourseCard>
           <div className="relative flex mr-2 rounded-md">
@@ -31,3 +29,4 @@ export default function ManageCourses() {
 }
 
 ManageCourses.Layout = BaseLayout
+

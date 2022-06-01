@@ -19,7 +19,7 @@ export default function Header(){
         <>
             <WalletBar />
             <EthRates/>
-            <div className='flex flex-row-reverse pb-4 sm:px-6 lg:px-8'>
+            <div className='flex flex-row-reverse p-4 sm:px-6 lg:px-8'>
                 <Breadcrumbs items={LINKS}/>
             </div>
         </>
