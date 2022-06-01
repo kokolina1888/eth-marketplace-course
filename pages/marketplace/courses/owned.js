@@ -10,8 +10,7 @@ export default function OwnedCourses({courses}) {
   const { ownedCourses } = useOwnedCourses(courses, account.data)
 
   return (
-    <>
-      { JSON.stringify(ownedCourses.data) }
+    <> 
       <div className="py-4">
         <MarketHeader />
       </div>
