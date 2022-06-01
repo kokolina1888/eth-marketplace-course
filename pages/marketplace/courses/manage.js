@@ -10,7 +10,7 @@ export default function ManageCourses() {
       <MarketHeader />
       <CourseFilter />
       <section className="grid grid-cols-1">
-        <OwnedCourseCard>
+        {/* <OwnedCourseCard>
           <div className="relative flex mr-2 rounded-md">
             <input
               type="text"
@@ -22,11 +22,10 @@ export default function ManageCourses() {
               Verify
             </Button>
           </div>
-        </OwnedCourseCard>
+        </OwnedCourseCard> */}
       </section>
     </>
   )
 }
 
 ManageCourses.Layout = BaseLayout
-
