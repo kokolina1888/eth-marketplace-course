@@ -2,9 +2,9 @@ import { normalizeOwnedCourse } from "@utils/normalize"
 import useSWR from "swr"
  
 export const handler = (web3, contract) => (courses, account) => {
-
+console.log(account)
   const swrRes = useSWR(() =>
-    (web3 && contract && account) ? "web3/ownedCourses" : null,
+    (web3 && contract && account) ? `web3/ownedCourses/${account}` : null,
     async () => {
       const ownedCourses = []
 
@@ -30,4 +30,4 @@ export const handler = (web3, contract) => (courses, account) => {
   )
 
   return swrRes
-}
+} 
