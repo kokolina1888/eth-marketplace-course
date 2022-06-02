@@ -8,18 +8,22 @@ const NETWORKS = {
   5: "Goerli Test Network",
   42: "Kovan Test Network",
   56: "Binance Smart Chain",
-  5777: "Ganache",
+  1337: "Ganache",
 }
 
 const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID]
-console.log(targetNetwork)
+
 export const handler = (web3, provider) => () => {
 
   const { data, mutate, ...rest } = useSWR(() =>
     web3 ? "web3/network" : null,
     async () => {
       const chainId = await web3.eth.getChainId()
-      console.log(chainId)
+
+      if (!chainId) {
+        throw new Error("Cannot retreive network. Please refresh the browser.")
+      }
+
       return NETWORKS[chainId]
     }
   )
@@ -39,4 +43,3 @@ export const handler = (web3, provider) => () => {
     ...rest
   }
 }
-

@@ -1,5 +1,5 @@
 
-import { useEthPrice, COURSE_PRICE } from "@components/hooks/web3/useEthPrice"
+import { useEthPrice, COURSE_PRICE } from "@components/hooks/useEthPrice"
 import { Loader } from "@components/ui/common"
 import Image from "next/image"
 
@@ -7,8 +7,8 @@ export default function EthRates() {
   const { eth } = useEthPrice()
 
   return (
-    <div className="flex flex-col text-center xs:flex-row">
-      <div className="p-6 mr-2 border rounded-md drop-shadow">
+    <div className="flex flex-col xs:flex-row text-center">
+      <div className="p-6 border drop-shadow rounded-md mr-2">
         <div className="flex items-center justify-center">
           { eth.data ?
             <>
@@ -22,14 +22,14 @@ export default function EthRates() {
                 = {eth.data}$
               </span>
             </> :
-            <div className="flex justify-center w-full">
+            <div className="w-full flex justify-center">
               <Loader size="md" />
             </div>
           }
         </div>
         <p className="text-lg text-gray-500">Current eth Price</p>
       </div>
-      <div className="p-6 border rounded-md drop-shadow">
+      <div className="p-6 border drop-shadow rounded-md">
         <div className="flex items-center justify-center">
           { eth.data ?
             <>
@@ -46,7 +46,7 @@ export default function EthRates() {
                 = {COURSE_PRICE}$
               </span>
             </> :
-            <div className="flex justify-center w-full">
+            <div className="w-full flex justify-center">
               <Loader size="md" />
             </div>
           }
@@ -56,4 +56,3 @@ export default function EthRates() {
     </div>
   )
 }
-

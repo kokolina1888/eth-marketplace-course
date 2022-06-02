@@ -1,3 +1,5 @@
+
+
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -11,19 +13,27 @@ export const handler = (web3, provider) => () => {
     web3 ? "web3/accounts" : null,
     async () => {
       const accounts = await web3.eth.getAccounts()
-      const account = account[0]
-      if(!account){
-        throw new Error('Cannot retrieve an account. Please refresh the browser.')
+      const account = accounts[0]
+
+      if (!account) {
+        throw new Error("Cannot retreive an account. Please refresh the browser.")
       }
-      return accounts
+
+      return account
     }
   )
 
   useEffect(() => {
+    console.log("SUBSCRIBING TO EVENT")
     provider &&
     provider.on("accountsChanged",
-      accounts => mutate(accounts[0] ?? null)
+      accounts => {
+        console.log("ON ACCOUNT DATA")
+        mutate(accounts[0] ?? null)
+      }
     )
+
+    console.log(provider)
   }, [provider])
 
   return {

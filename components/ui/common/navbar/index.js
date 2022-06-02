@@ -1,3 +1,5 @@
+
+
 import { useWeb3 } from "@components/providers"
 import Link from "next/link"
 import { ActiveLink, Button } from "@components/ui/common"
@@ -11,25 +13,25 @@ export default function Navbar() {
 
   return (
     <section>
-      <div className="relative px-4 pt-6 sm:px-6 lg:px-8">
+      <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
-          <div className="flex flex-col items-center justify-between xs:flex-row">
+          <div className="flex flex-col xs:flex-row justify-between items-center">
             <div>
               <ActiveLink href="/" >
                 <a
-                  className="mr-8 font-medium text-gray-500 hover:text-gray-900">
+                  className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Home
                 </a>
               </ActiveLink>
               <ActiveLink href="/marketplace" >
                 <a
-                  className="mr-8 font-medium text-gray-500 hover:text-gray-900">
+                  className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Marketplace
                 </a>
               </ActiveLink>
               <ActiveLink href="/blogs" >
                 <a
-                  className="mr-8 font-medium text-gray-500 hover:text-gray-900">
+                  className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Blogs
                 </a>
               </ActiveLink>
@@ -37,7 +39,7 @@ export default function Navbar() {
             <div className="text-center">
               <ActiveLink href="/wishlist" >
                 <a
-                  className="mr-1 font-medium text-gray-500 sm:mr-8 hover:text-gray-900">
+                  className="font-medium sm:mr-8 mr-1 text-gray-500 hover:text-gray-900">
                   Wishlist
                 </a>
               </ActiveLink>
@@ -70,7 +72,7 @@ export default function Navbar() {
       { account.data &&
         !pathname.includes("/marketplace") &&
         <div className="flex justify-end pt-1 sm:px-6 lg:px-8">
-          <div className="p-2 text-white bg-indigo-600 rounded-md">
+          <div className="text-white bg-indigo-600 rounded-md p-2">
             {account.data}
           </div>
         </div>
