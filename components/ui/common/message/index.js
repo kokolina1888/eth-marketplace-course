@@ -19,11 +19,11 @@ export default function Message({children, type = "success"}) {
       <div className="px-3 py-3 mx-auto max-w-7xl sm:px-3 lg:px-3">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex items-center flex-1 w-0">
-            <p className={`ml-3 font-medium text-${messageType}-900 truncate`}>
-              <span className="hidden md:inline">
+            <div className={`ml-3 font-medium text-${messageType}-900 truncate`}>
+              <span className="md:inline">
                 { children }
               </span>
-            </p>
+            </div>
           </div>
           <div className="flex-shrink-0 order-2 sm:order-3 sm:ml-3">
             <button
