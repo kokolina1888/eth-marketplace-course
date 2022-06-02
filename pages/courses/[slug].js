@@ -14,6 +14,8 @@ export default function Course({course}) {
   const { account } = useAccount()
   const { ownedCourse } = useOwnedCourse(course, account.data)
   const courseState = ownedCourse.data?.state; 
+  const isLocked = courseState === 'Purchased' ||
+                    courseState === 'Deactivated'
   return (
     <>
       <div className="py-4">
@@ -54,7 +56,8 @@ export default function Course({course}) {
       }
       </div> }
       <Curriculum 
-        locked={true}
+        locked={isLocked}
+        courseState={courseState}
       />
       <Modal />
     </>
@@ -72,7 +75,8 @@ export function getStaticPaths() {
         })),
         fallback: false
     }
-}export function getStaticProps({params}) {
+}
+export function getStaticProps({params}) {
     const { data } = getAllCourses();
     const course = data.filter( c => c.slug === params.slug)[0]
     return {
