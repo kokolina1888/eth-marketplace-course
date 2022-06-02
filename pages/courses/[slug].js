@@ -9,13 +9,17 @@ import { BaseLayout } from "@components/ui/layout";
 import { useOwnedCourse } from "@components/hooks/web3";
 import { useAccount } from "@components/hooks/web3";
 import { Message} from '@components/ui/common';
+import { useWeb3 } from "@components/providers";
 
 export default function Course({course}) {
+  const { isLoading } = useWeb3()
   const { account } = useAccount()
   const { ownedCourse } = useOwnedCourse(course, account.data)
   const courseState = ownedCourse.data?.state; 
-  const isLocked = courseState === 'Purchased' ||
-                    courseState === 'Deactivated'
+  const isLocked = 
+          !courseState ||
+          courseState === 'Purchased' ||
+          courseState === 'Deactivated'
   return (
     <>
       <div className="py-4">
@@ -56,6 +60,7 @@ export default function Course({course}) {
       }
       </div> }
       <Curriculum 
+        isLoading = {isLoading}
         locked={isLocked}
         courseState={courseState}
       />
