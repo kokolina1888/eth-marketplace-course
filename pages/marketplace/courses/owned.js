@@ -6,9 +6,11 @@ import { MarketHeader } from "@components/ui/marketplace";
 import { getAllCourses } from "@content/courses/fetcher";
 import { useRouter } from "next/router";
 import Link from 'next/link'
+import { useWeb3 } from "@components/providers";
 
 export default function OwnedCourses({courses}) {
   const router = useRouter()
+  const { requireInstall } = useWeb3()
   const { account } = useAccount()
   const { ownedCourses } = useOwnedCourses(courses, account.data)
 
@@ -16,9 +18,7 @@ export default function OwnedCourses({courses}) {
     <>
       <MarketHeader />
       <section className="grid grid-cols-1">
-        { ownedCourses.hasInitialResponse && (
-          !ownedCourses.data || ownedCourses?.data.length === 0 
-        ) &&  
+        { ownedCourses.isEmpty &&  
           <div>
             <Message type='warning'>
               <div>
@@ -29,6 +29,24 @@ export default function OwnedCourses({courses}) {
                   <i>Purchase Course</i>
                 </a>
               </Link>
+            </Message>
+          </div>
+        }
+        { account.isEmpty &&  
+          <div>
+            <Message type='warning'>
+              <div>
+                Please connect to metamask! 
+              </div>
+            </Message>
+          </div>
+        }
+        { requireInstall &&  
+          <div>
+            <Message type='warning'>
+              <div>
+                Please install metamask! 
+              </div>
             </Message>
           </div>
         }
